@@ -4,7 +4,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import TopUp from "./pages/Topup";
+import TopUp from "./pages/TopUp";
 import Layout from "./components/Layout";
 import ServiceDetailPayment from "./pages/ServiceDetailPayment";
 import TransactionHistory from "./pages/TransactionHistory";
