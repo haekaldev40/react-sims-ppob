@@ -12,6 +12,8 @@ import {
   MdLockOutline,
   MdError,
 } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
+import { reset } from "../store/slices/authSlice";
 
 function Register() {
   const dispatch = useDispatch();
@@ -34,13 +36,13 @@ function Register() {
 
   const onSubmit = async (data) => {
     try {
-      const result = await dispatch(registerUser(data));
-      console.log(result);
-      if (result.status === 0) {
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
+      const result = await dispatch(registerUser(data)).unwrap();
+      console.log('hasil: ',result);
+      if (result.status === 0 || result.message) {
+        console.log("Navigating to login...");
+        navigate("/login");
       }
+      dispatch(reset());
     } catch (error) {
       console.error("Register failed:", error);
     }
@@ -70,8 +72,8 @@ function Register() {
         )}
         
         {message && (
-          <div className="text-xs text-red-500 flex gap-1 items-center mt-1 font-bold">
-            <MdError size={10}/>
+          <div className="text-xs text-green-500 flex gap-1 items-center mt-1 font-bold">
+            <FaCheck size={10}/>
             {message}
           </div>
         )}
@@ -179,13 +181,7 @@ function Register() {
               </div>
             )}
           </div>
-
-          {/* {message && (
-            <div className="p-3 bg-green-100 text-green-700 rounded-md">
-              {message}
-            </div>
-          )} */}
-
+          
           <button
             type="submit"
             disabled={loading}

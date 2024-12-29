@@ -11,6 +11,7 @@ import Logo from "../assets/logo.png";
 import LogoRegister from "../assets/login.png";
 import { MdError, MdLockOutline, MdOutlineAlternateEmail } from "react-icons/md";
 import {BsFillCheckCircleFill} from 'react-icons/bs';
+import { reset } from "../store/slices/authSlice";
 
 
 function Login() {
@@ -24,6 +25,11 @@ function Login() {
             password: "",
         },
     });
+    
+    useEffect(() => {
+      dispatch(reset());
+  }, [dispatch]);
+
     const onSubmit = async (data) => {
         try {
             const result = await dispatch(loginUser(data));
@@ -41,7 +47,7 @@ function Login() {
 
     useEffect(() => {
         if (token) {
-            navigate("/home");
+            navigate("/");
         }
     }, [token, navigate]);
    
