@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerUser } from "../store/thunks/authThunks";
 import { registerSchema } from "../schema/authSchema";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import LogoRegister from "../assets/login.png";
 import {
@@ -190,6 +190,9 @@ function Register() {
             {loading ? "Loading..." : "Register"}
           </button>
         </form>
+        <div className="flex justify-center items-center mt-4">
+        <p className="text-black">Sudah punya akun? login <Link to={'/login'} className="text-[#dc2626] font-bold">disini.</Link> </p>
+        </div>
       </div>
 
       <div className="hidden lg:flex flex-1 bg-pink-100 justify-center items-center">
